@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Aga Khan University Hospital</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            overflow-x: hidden;
+        }
+
+
+        /* ================= NAVBAR ================= */
+
+        .navbar {
+            height: 70px;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 5%;
+            position: relative;
+            z-index: 1000;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            min-width: 220px;
+        }
+
+        .logo-symbol {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: #e9232b;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .urdu {
+            font-size: 12px;
+        }
+
+        .english {
+            font-size: 11px;
+            font-weight: bold;
+            margin-top: 3px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 45px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #071d2b;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .nav-links a:hover {
+            color: #e9232b;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+        }
+
+        .nav-right i {
+            font-size: 18px;
+        }
+
+        .nav-right button {
+            background: #ed1c24;
+            color: white;
+            border: none;
+            padding: 11px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        .menu-btn {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+
+        /* ================= SLIDER ================= */
+
+        .hero {
+            height: 500px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .slide {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .slide.active {
+            opacity: 1;
+            z-index: 1;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 25, 40, 0.55);
+        }
+
+        .hero-content {
+            position: absolute;
+            z-index: 2;
+            top: 50%;
+            left: 50%;
+            width: 90%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: white;
+        }
+
+        .hero-content h1 {
+            font-family: Georgia, serif;
+            font-size: clamp(38px, 5vw, 70px);
+            font-weight: normal;
+            line-height: 1.1;
+        }
+
+        .hero-content h3 {
+            font-size: 21px;
+            margin: 20px 0 30px;
+        }
+
+        .hero-content button {
+            border: none;
+            background: #ed1c24;
+            color: white;
+            padding: 18px 75px;
+            border-radius: 5px;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+
+        /* ================= FOOTER ================= */
+
+        footer {
+            background: #002431;
+            color: white;
+            padding: 45px 6% 25px;
+        }
+
+        .footer-top {
+            display: grid;
+            grid-template-columns: 1.8fr 1.3fr 1.3fr 1.1fr;
+            gap: 40px;
+            padding-bottom: 35px;
+            border-bottom: 1px solid rgba(255,255,255,0.15);
+        }
+
+        .footer-brand h2 {
+            font-size: 19px;
+            line-height: 1.4;
+        }
+
+        .footer-column {
+            display: flex;
+            flex-direction: column;
+            gap: 11px;
+        }
+
+        .footer-column h4 {
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        .footer-column a {
+            color: #ddd;
+            text-decoration: none;
+            font-size: 15px;
+            line-height: 1.3;
+        }
+
+        .footer-column a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            padding-top: 28px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            gap: 25px;
+        }
+
+        .copyright {
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .footer-right {
+            text-align: right;
+        }
+
+        .social-icons {
+            font-size: 25px;
+            margin-bottom: 15px;
+        }
+
+        .social-icons i {
+            margin-left: 13px;
+            cursor: pointer;
+        }
+
+        .policies {
+            font-size: 12px;
+            line-height: 1.6;
+        }
+
+
+        /* ================= TABLET ================= */
+
+        @media (max-width: 1050px) {
+
+            .navbar {
+                padding: 0 25px;
+            }
+
+            .nav-links {
+                gap: 20px;
+            }
+
+            .nav-right button {
+                padding: 9px 12px;
+                font-size: 12px;
+            }
+
+            .logo {
+                min-width: auto;
+            }
+        }
+
+
+        /* ================= MOBILE ================= */
+
+        @media (max-width: 768px) {
+
+            .navbar {
+                height: 64px;
+                padding: 0 16px;
+            }
+
+            .logo {
+                gap: 8px;
+            }
+
+            .logo-symbol {
+                width: 36px;
+                height: 36px;
+                font-size: 18px;
+            }
+
+            .urdu {
+                font-size: 10px;
+            }
+
+            .english {
+                font-size: 9px;
+            }
+
+            /* Desktop links hide */
+            .nav-links,
+            .nav-right {
+                display: none;
+            }
+
+            .menu-btn {
+                display: block;
+                color: #071d2b;
+            }
+
+            /* Mobile dropdown */
+            .nav-links.show {
+                display: flex;
+                position: absolute;
+                top: 64px;
+                left: 0;
+                width: 100%;
+                flex-direction: column;
+                gap: 0;
+                background: white;
+                box-shadow: 0 8px 15px rgba(0,0,0,0.12);
+            }
+
+            .nav-links.show li {
+                list-style: none;
+                width: 100%;
+                border-bottom: 1px solid #eee;
+            }
+
+            .nav-links.show a {
+                display: block;
+                padding: 17px 22px;
+            }
+
+
+            /* HERO */
+            .hero {
+                height: 430px;
+            }
+
+            .hero-content {
+                width: 100%;
+                padding: 0 20px;
+            }
+
+            .hero-content h1 {
+                font-size: clamp(30px, 9vw, 45px);
+                line-height: 1.15;
+            }
+
+            .hero-content h3 {
+                font-size: 17px;
+                margin: 16px 0 25px;
+            }
+
+            .hero-content button {
+                padding: 15px 48px;
+                font-size: 15px;
+            }
+
+
+            /* FOOTER */
+            footer {
+                padding: 38px 22px 25px;
+            }
+
+            .footer-top {
+                grid-template-columns: 1fr;
+                gap: 30px;
+                padding-bottom: 30px;
+            }
+
+            .footer-brand h2 {
+                font-size: 19px;
+            }
+
+            .footer-column {
+                gap: 9px;
+            }
+
+            .footer-column h4 {
+                margin-bottom: 4px;
+            }
+
+            .footer-column a {
+                font-size: 15px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 22px;
+                padding-top: 25px;
+            }
+
+            .copyright {
+                font-size: 12px;
+                line-height: 1.6;
+            }
+
+            .footer-right {
+                width: 100%;
+                text-align: left;
+            }
+
+            .social-icons {
+                font-size: 24px;
+                margin-bottom: 12px;
+            }
+
+            .social-icons i {
+                margin: 0 12px 0 0;
+            }
+
+            .policies {
+                font-size: 11px;
+                line-height: 1.8;
+            }
+        }
+
+
+        /* ================= SMALL MOBILE ================= */
+
+        @media (max-width: 400px) {
+
+            .navbar {
+                padding: 0 12px;
+            }
+
+            .logo-symbol {
+                width: 32px;
+                height: 32px;
+                font-size: 16px;
+            }
+
+            .urdu {
+                font-size: 9px;
+            }
+
+            .english {
+                font-size: 8px;
+            }
+
+            .hero {
+                height: 390px;
+            }
+
+            .hero-content h1 {
+                font-size: 28px;
+            }
+
+            .hero-content h3 {
+                font-size: 15px;
+            }
+
+            .hero-content button {
+                padding: 14px 40px;
+            }
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+    <!-- ================= NAVBAR ================= -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+            <div class="logo-symbol">
+                <i class="fa-solid fa-heart-pulse"></i>
+            </div>
+
+            <div class="logo-text">
+                <span class="urdu">آغا خان یونیورسٹی ہسپتال</span>
+                <span class="english">The Aga Khan University Hospital</span>
+            </div>
+        </div>
+
+
+        <ul class="nav-links">
+            <li><a href="#">Patient Care</a></li>
+            <li><a href="#">Hospitals & Centres</a></li>
+            <li><a href="#">About Us</a></li>
+        </ul>
+
+
+        <div class="nav-right">
+            <span>🇵🇰</span>
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <button>Request Appointment</button>
+            <button>Donate Now</button>
+        </div>
+
+
+        <i class="fa-solid fa-bars menu-btn"></i>
+
+    </nav>
+
+
+    <!-- ================= IMAGE SLIDER ================= -->
+
+    <section class="hero">
+
+        <!-- Slide 1 -->
+        <div class="slide active">
+
+            <img src="https://images.unsplash.com/photo-1586773860418-d37222d8fce3?auto=format&fit=crop&w=1600&q=80">
+
+            <div class="overlay"></div>
+
+            <div class="hero-content">
+                <h1>THE AGA KHAN UNIVERSITY<br>HOSPITAL, PAKISTAN</h1>
+                <h3>Trusted Quality Care</h3>
+                <button>Find a Doctor</button>
+            </div>
+
+        </div>
+
+
+        <!-- Slide 2 -->
+        <div class="slide">
+
+            <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=1600&q=80">
+
+            <div class="overlay"></div>
+
+            <div class="hero-content">
+                <h1>EXCELLENCE IN<br>HEALTHCARE</h1>
+                <h3>Care That Makes a Difference</h3>
+                <button>Find a Doctor</button>
+            </div>
+
+        </div>
+
+
+        <!-- Slide 3 -->
+        <div class="slide">
+
+            <img src="https://images.unsplash.com/photo-1538108149393-fbbd81895907?auto=format&fit=crop&w=1600&q=80">
+
+            <div class="overlay"></div>
+
+            <div class="hero-content">
+                <h1>YOUR HEALTH,<br>OUR PRIORITY</h1>
+                <h3>Leading Healthcare for Everyone</h3>
+                <button>Find a Doctor</button>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <div class="footer-top">
+
+            <div class="footer-brand">
+                <h2>The Aga Khan University Hospital</h2>
+            </div>
+
+
+            <div class="footer-column">
+                <h4>Resources and Information</h4>
+                <a href="#">Prepare for Your Visit</a>
+                <a href="#">Disease Encyclopedia</a>
+                <a href="#">Patient Educational Material</a>
+                <a href="#">Patient Rights and Responsibilities</a>
+                <a href="#">Quality and Patient Safety</a>
+                <a href="#">Patient Support Groups</a>
+                <a href="#">Health Records</a>
+            </div>
+
+
+            <div class="footer-column">
+                <h4>Learn About Us</h4>
+                <a href="#">Aga Khan University</a>
+                <a href="#">Global Presence</a>
+                <a href="#">Our Research</a>
+                <a href="#">Study Medicine</a>
+                <a href="#">Study Nursing</a>
+                <a href="#">Study Allied Health</a>
+            </div>
+
+
+            <div class="footer-column">
+                <h4>Connect & Support</h4>
+                <a href="#">Giving & Donations</a>
+                <a href="#">Careers at AKUH</a>
+                <a href="#">One AKU</a>
+                <a href="#">AKU Webmail</a>
+                <a href="#">Contact Us</a>
+            </div>
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            <p class="copyright">
+                © 2026 The Aga Khan University Hospital, Pakistan. All Rights Reserved.
+            </p>
+
+
+            <div class="footer-right">
+
+                <div class="social-icons">
+                    <i class="fa-brands fa-facebook"></i>
+                    <i class="fa-brands fa-youtube"></i>
+                    <i class="fa-brands fa-x-twitter"></i>
+                    <i class="fa-brands fa-linkedin"></i>
+                    <i class="fa-brands fa-instagram"></i>
+                    <i class="fa-brands fa-whatsapp"></i>
+                </div>
+
+                <p class="policies">
+                    Terms of Use &nbsp;•&nbsp; Privacy Policy &nbsp;•&nbsp;
+                    Copyright Policy &nbsp;•&nbsp; Disclaimers
+                </p>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <script>
+
+        /* IMAGE SLIDER */
+
+        let slides = document.querySelectorAll(".slide");
+        let currentSlide = 0;
+
+        setInterval(function () {
+
+            slides[currentSlide].classList.remove("active");
+
+            currentSlide++;
+
+            if (currentSlide >= slides.length) {
+                currentSlide = 0;
+            }
+
+            slides[currentSlide].classList.add("active");
+
+        }, 1000);
+
+
+        /* MOBILE MENU */
+
+        let menuButton = document.querySelector(".menu-btn");
+        let navLinks = document.querySelector(".nav-links");
+
+        menuButton.addEventListener("click", function () {
+            navLinks.classList.toggle("show");
+        });
+
+    </script>
+
+
+</body>
+</html>
